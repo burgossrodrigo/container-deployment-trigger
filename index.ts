@@ -9,7 +9,7 @@ app.use(express.json())
 app.use(cors())
 
 app.get("/", (req: Request, res: Response) => {
-    return res.status(200).json({ message: "Server running" })
+    return res.status(200).json({ message: "Ok" })
 })
 
 app.post("/create-containers", async (req: Request, res: Response) => {
