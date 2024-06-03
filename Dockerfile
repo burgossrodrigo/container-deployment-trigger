@@ -11,13 +11,16 @@ COPY package.json yarn.lock ./
 RUN yarn install
 
 # Install TypeScript and necessary declaration files as development dependencies
-RUN yarn add --dev typescript @types/node @types/dockerode @types/express @types/cors @types/node
+RUN yarn add --dev typescript @types/node @types/dockerode @types/express @types/cors
 
 # Copy the rest of the project files to the working directory
 COPY . .
+
+# Build the TypeScript code
+RUN yarn build
 
 # Expose port 3000 for the application
 EXPOSE 3000
 
 # Start the application
-CMD ["npx", "ts-node", "index.ts"]
+CMD ["node", "dist/index.js"]
