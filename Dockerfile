@@ -1,21 +1,23 @@
-# Use the official Node.js 18 image from Docker Hub
+# Use the Node.js 18 image as the base image
 FROM node:18
 
-# Create a directory in the container to hold the application code
+# Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Copy package.json and yarn.lock
+# Copy package.json and yarn.lock files to the working directory
 COPY package.json yarn.lock ./
 
-# Install dependencies including development dependencies
-# This is necessary for the `nest build` command to work
+# Install project dependencies
 RUN yarn install
 
-# Copy the rest of the application code to the workdir
+# Install TypeScript and necessary declaration files as development dependencies
+RUN yarn add --dev typescript @types/node @types/dockerode @types/express @types/cors
+
+# Copy the rest of the project files to the working directory
 COPY . .
 
 # Expose port 3000 for the application
 EXPOSE 3000
 
 # Start the application
-CMD [ "npm", "start" ]
+CMD ["npx", "ts-node", "index.ts"]
