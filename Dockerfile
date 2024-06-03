@@ -11,7 +11,7 @@ COPY package.json yarn.lock ./
 RUN yarn install
 
 # Install TypeScript and necessary declaration files as development dependencies
-RUN yarn add --dev typescript @types/node @types/dockerode @types/express @types/cors
+RUN yarn add --dev typescript @types/node @types/dockerode @types/express @types/cors ts-node
 
 # Copy the rest of the project files to the working directory
 COPY . .

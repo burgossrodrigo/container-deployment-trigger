@@ -1,16 +1,22 @@
 {
-  "compilerOptions": {
-    "target": "ES6",
-    "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
-    "baseUrl": ".",
-    "paths": {
-      "*": ["node_modules/*"]
-    }
+  "name": "container-deployment-trigger",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc"
   },
-  "include": ["src/**/*", "index.ts"]
+  "dependencies": {
+    "dockerode": "^3.3.1",
+    "express": "^4.17.1",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0",
+    "@types/node": "^14.14.37",
+    "@types/dockerode": "^3.3.0",
+    "@types/express": "^4.17.11",
+    "@types/cors": "^2.8.9",
+    "ts-node": "^10.4.0"
+  }
 }
