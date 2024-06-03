@@ -1,16 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 
-# Define the directory where the repository is located
-REPO_DIR="container-deployment-trigger"
+# Navigate to the repository directory
+cd /home/admin/container-deployment-trigger || { echo "Directory not found"; exit 1; }
 
-# Define the Docker image name
-IMAGE_NAME="container-deployment-trigger"
+# Stash any local changes
+git stash
 
-# Change to the directory containing the repository
-cd $REPO_DIR
+# Pull the latest changes from the main branch
+git pull origin main
 
-# Pull the latest changes from the repository
-git pull
+# Apply the stashed changes (if any)
+git stash pop
 
 # Check if the Docker image exists
 if [ "$(docker images -q $IMAGE_NAME)" ]; then
